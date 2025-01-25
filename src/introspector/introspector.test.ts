@@ -2,6 +2,7 @@ import { deepStrictEqual } from 'assert';
 import { type Kysely } from 'kysely';
 import parsePostgresInterval from 'postgres-interval';
 import { describe, test } from 'vitest';
+import getConnectionString from '../generator/utils/tests/get-connection-string';
 import { NumericParser } from '../introspector/dialects/postgres/numeric-parser';
 import { migrate } from '../introspector/introspector.fixtures';
 import type { IntrospectorDialect } from './dialect';
@@ -25,14 +26,13 @@ type Test = {
 
 const TESTS: Test[] = [
   {
-    connectionString: 'mysql://user:password@kysely_codegen_mysql/database',
+    connectionString: getConnectionString('mysql'),
     dialect: new MysqlIntrospectorDialect(),
     inputValues: { false: 0, id: 1, true: 1 },
     outputValues: { false: 0, id: 1, true: 1 },
   },
   {
-    connectionString:
-      'postgres://user:password@kysely_codegen_postgres:5432/database',
+    connectionString: getConnectionString('postgres'),
     dialect: new PostgresIntrospectorDialect({
       dateParser: DateParser.STRING,
       numericParser: NumericParser.NUMBER_OR_STRING,
@@ -67,7 +67,7 @@ const TESTS: Test[] = [
     outputValues: { false: 0, id: 1, true: 1 },
   },
   {
-    connectionString: 'libsql://kysely_codegen_libsql:8080?tls=0',
+    connectionString: getConnectionString('libsql'),
     dialect: new LibsqlIntrospectorDialect(),
     inputValues: { false: 0, id: 1, true: 1 },
     outputValues: { false: 0, id: 1, true: 1 },

@@ -15,6 +15,7 @@ import { LibsqlDialect } from '../dialects/libsql/libsql-dialect';
 import { MysqlDialect } from '../dialects/mysql/mysql-dialect';
 import { PostgresDialect } from '../dialects/postgres/postgres-dialect';
 import { SqliteDialect } from '../dialects/sqlite/sqlite-dialect';
+import getConnectionString from '../utils/tests/get-connection-string';
 import type { GenerateOptions } from './generate';
 import { generate } from './generate';
 import { RuntimeEnumsStyle } from './runtime-enums-style';
@@ -30,24 +31,22 @@ const SNAPSHOTS_DIR = join(__dirname, 'snapshots');
 
 const TESTS: Test[] = [
   {
-    connectionString: 'libsql://kysely_codegen_libsql:8080?tls=0',
+    connectionString: getConnectionString('libsql'),
     dialect: new LibsqlDialect(),
     name: 'libsql',
   },
   {
-    connectionString: 'mysql://user:password@kysely_codegen_mysql/database',
+    connectionString: getConnectionString('mysql'),
     dialect: new MysqlDialect(),
     name: 'mysql',
   },
   {
-    connectionString:
-      'postgres://user:password@kysely_codegen_postgres:5432/database',
+    connectionString: getConnectionString('postgres'),
     dialect: new PostgresDialect(),
     name: 'postgres',
   },
   {
-    connectionString:
-      'postgres://user:password@kysely_codegen_postgres:5432/database',
+    connectionString: getConnectionString('postgres'),
     dialect: new PostgresDialect({
       dateParser: DateParser.STRING,
       numericParser: NumericParser.NUMBER_OR_STRING,
