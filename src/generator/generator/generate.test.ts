@@ -30,22 +30,24 @@ const SNAPSHOTS_DIR = join(__dirname, 'snapshots');
 
 const TESTS: Test[] = [
   {
-    connectionString: 'libsql://localhost:8080?tls=0',
+    connectionString: 'libsql://kysely_codegen_libsql:8080?tls=0',
     dialect: new LibsqlDialect(),
     name: 'libsql',
   },
   {
-    connectionString: 'mysql://user:password@localhost/database',
+    connectionString: 'mysql://user:password@kysely_codegen_mysql/database',
     dialect: new MysqlDialect(),
     name: 'mysql',
   },
   {
-    connectionString: 'postgres://user:password@localhost:5433/database',
+    connectionString:
+      'postgres://user:password@kysely_codegen_postgres:5432/database',
     dialect: new PostgresDialect(),
     name: 'postgres',
   },
   {
-    connectionString: 'postgres://user:password@localhost:5433/database',
+    connectionString:
+      'postgres://user:password@kysely_codegen_postgres:5432/database',
     dialect: new PostgresDialect({
       dateParser: DateParser.STRING,
       numericParser: NumericParser.NUMBER_OR_STRING,

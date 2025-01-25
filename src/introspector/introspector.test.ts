@@ -25,13 +25,14 @@ type Test = {
 
 const TESTS: Test[] = [
   {
-    connectionString: 'mysql://user:password@localhost/database',
+    connectionString: 'mysql://user:password@kysely_codegen_mysql/database',
     dialect: new MysqlIntrospectorDialect(),
     inputValues: { false: 0, id: 1, true: 1 },
     outputValues: { false: 0, id: 1, true: 1 },
   },
   {
-    connectionString: 'postgres://user:password@localhost:5433/database',
+    connectionString:
+      'postgres://user:password@kysely_codegen_postgres:5432/database',
     dialect: new PostgresIntrospectorDialect({
       dateParser: DateParser.STRING,
       numericParser: NumericParser.NUMBER_OR_STRING,
@@ -66,7 +67,7 @@ const TESTS: Test[] = [
     outputValues: { false: 0, id: 1, true: 1 },
   },
   {
-    connectionString: 'libsql://localhost:8080?tls=0',
+    connectionString: 'libsql://kysely_codegen_libsql:8080?tls=0',
     dialect: new LibsqlIntrospectorDialect(),
     inputValues: { false: 0, id: 1, true: 1 },
     outputValues: { false: 0, id: 1, true: 1 },
